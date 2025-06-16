@@ -1,5 +1,5 @@
 this repository is for centralized repository for the following microservices:
-0. post-config-server(post-config-server.yml) is placed in my-config-server-data-in-git folder along with application.yml
+0. post-config-server(post-config-server.yml) is placed in k8s-config-server-data-in-git folder along with application.yml
 remaining configurations are placed in config folder
 1. post-service (post-service.yml)--> post related functionality
 2. content-service(content-service.yml( --> will call post -service using webclient

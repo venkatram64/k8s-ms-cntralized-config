@@ -14,6 +14,9 @@ management:  #actuator configuration
     sampling:
       probability: 1.0
 spring:
+  zipkin:
+    base-url: http://zipkin-server:9411
+    enabled: true
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_posts_new
     username: root
