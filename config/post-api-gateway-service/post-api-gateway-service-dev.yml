@@ -1,17 +1,4 @@
-server:
-  port: 8060
 
-management: #actuator configuration
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: always
-  tracing:  #for zipkin logging
-    sampling:
-      probability: 1.0
 
 eureka: #client is registering into Eureka server
   client:

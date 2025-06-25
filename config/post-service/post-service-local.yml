@@ -1,18 +1,4 @@
 
-server:
-  port: ${POST_SERVICE_SERVER_PORT:8081}
-
-management:  #actuator configuration
-  endpoints:
-    web:
-      exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: always
-  tracing:  #for zipkin logging
-    sampling:
-      probability: 1.0
 spring:
   zipkin:
     base-url: http://zipkin-server:9411
