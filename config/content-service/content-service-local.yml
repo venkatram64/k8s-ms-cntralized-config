@@ -5,8 +5,8 @@ spring:
     enabled: true
   datasource:
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_posts_new
-    username: root
-    password: root
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:  #database connection pool configuration
       connection-timeout: 15000
