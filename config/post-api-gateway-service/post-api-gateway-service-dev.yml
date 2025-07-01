@@ -2,10 +2,10 @@
 
 eureka: #client is registering into Eureka server
   client:
+    registerWithEureka: true
+    fetchRegistry: true
     serviceUrl:
       defaultZone: http://service-registry-in-eureka:8761/eureka/
-    fetchRegistry: true   # Add this to fetch service registry
-    registerWithEureka: true   # Add this to register with eureka
   instance:
     hostname: ${spring.application.name}
     instanceId: ${spring.application.name}:${server.port}
