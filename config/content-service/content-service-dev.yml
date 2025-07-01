@@ -34,8 +34,9 @@ eureka: #client is registering into Eureka server
     serviceUrl:
       defaultZone: http://service-registry-in-eureka:8761/eureka/
   instance:
-    hostname: ${spring.application.name}
-    instanceId: ${spring.application.name}:${server.port}
+    preferIpAddress: false
+    hostname: ${EUREKA_INSTANCE_HOSTNAME:content-service}
+    instanceId: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
 
 #secret for creating JWT token, JWT token will live upto 10 hours
 jwtSecret: b6c3e9153b2ae05e5b20444bbf014ab0dba5cfac666117d767dbd284b825ed85

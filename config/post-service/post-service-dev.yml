@@ -34,8 +34,7 @@ eureka:  #client is registering into Eureka server
     serviceUrl:
       defaultZone: http://service-registry-in-eureka:8761/eureka/
   instance:
-    #preferIpAddress: true
-    #hostname: localhost
-    hostname: ${spring.application.name}
-    instanceId: ${spring.application.name}:${server.port}
+    preferIpAddress: false
+    hostname: ${EUREKA_INSTANCE_HOSTNAME:post-service}
+    instanceId: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
 
