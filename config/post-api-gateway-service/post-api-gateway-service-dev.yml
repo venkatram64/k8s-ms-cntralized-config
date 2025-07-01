@@ -3,7 +3,7 @@
 eureka: #client is registering into Eureka server
   client:
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://service-registry-in-eureka:8761/eureka/
     fetchRegistry: true   # Add this to fetch service registry
     registerWithEureka: true   # Add this to register with eureka
   instance:
