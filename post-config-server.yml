@@ -10,8 +10,11 @@ spring:  #config server configuration
         git:
           uri: https://github.com/venkatram64/k8s-ms-cntralized-config.git
           search-paths:   # Correct for your directory structure
-            - config/{application}
-            - config
+            - config/post-service          # For post-service specific configs
+            - config/content-service       # For content-service specific configs
+            - config/post-api-gateway-service  # For gateway specific configs
+            - config                       # Root config directory
+            - .                            # Repository root
           clone-on-start: true   # Ensures config is pulled on startup
           default-label: main    # Default git branch
           force-pull: true       # Recommended to get latest changes
