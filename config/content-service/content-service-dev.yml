@@ -1,8 +1,8 @@
 spring:
-  config:
-    activate:
-      on-profile: dev
-    import: "configserver:http://post-config-server:8088"
+#  config:
+#    activate:
+#      on-profile: dev
+#    import: "configserver:http://post-config-server:8088"
   zipkin:
     base-url: http://zipkin-server:9411
     enabled: true
@@ -51,3 +51,9 @@ eureka:
 
 jwtSecret: b6c3e9153b2ae05e5b20444bbf014ab0dba5cfac666117d767dbd284b825ed85
 expirationMs: 36000000  # 10 hours
+
+# Add logging configuration
+logging:
+  level:
+    com.venkat: DEBUG
+    org.springframework.cloud.config: DEBUG
