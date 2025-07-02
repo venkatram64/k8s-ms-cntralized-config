@@ -1,14 +1,13 @@
-
 spring:
   zipkin:
     base-url: http://zipkin-server:9411
     enabled: true
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_posts_new
+    url: jdbc:mysql://${MYSQL_HOST:post-mysql}:3306/db_posts_new
     username: ${MYSQL_USER:root}
     password: ${MYSQL_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
-    hikari: #database connection pool configuration
+    hikari:
       connection-timeout: 15000
       minimum-idle: 2
       maximum-pool-size: 5
@@ -27,14 +26,17 @@ spring:
     ansi:
       enabled: always
 
-eureka:  #client is registering into Eureka server
+eureka:
   client:
-    registerWithEureka: true
-    fetchRegistry: true
-    serviceUrl:
-      defaultZone: http://service-registry-in-eureka:8761/eureka/
+    register-with-eureka: true  # Changed from registerWithEureka (camelCase to kebab-case)
+    fetch-registry: true        # Changed from fetchRegistry
+    service-url:               # Changed from serviceUrl
+      default-zone: http://service-registry-in-eureka:8761/eureka/  # Changed from defaultZone
+    healthcheck:
+      enabled: true
   instance:
-    preferIpAddress: false
+    prefer-ip-address: false   # Changed from preferIpAddress
     hostname: ${EUREKA_INSTANCE_HOSTNAME:post-service}
-    instanceId: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
-
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}  # Changed from instanceId
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 30
