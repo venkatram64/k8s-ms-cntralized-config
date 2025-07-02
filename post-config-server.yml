@@ -8,7 +8,7 @@ spring:  #config server configuration
     config:
       server:
         git:
-          uri: https://github.com/venkatram64/my-config-server-data-in-git.git
+          uri: https://github.com/venkatram64/k8s-ms-cntralized-config.git
           search-paths:   # Correct for your directory structure
             - config/{application}
             - config
