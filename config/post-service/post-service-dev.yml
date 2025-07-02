@@ -1,4 +1,8 @@
 spring:
+  config:
+    activate:
+      on-profiles: dev
+    import: "configserver:http://post-config-server:8088"
   zipkin:
     base-url: http://zipkin-server:9411
     enabled: true
