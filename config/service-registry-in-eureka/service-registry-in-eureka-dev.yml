@@ -1,5 +1,7 @@
 
-
+spring:
+  application:
+    name: service-registry-in-eureka
 eureka:
   instance:
     hostname: service-registry-in-eureka  # Must match Kubernetes service name
