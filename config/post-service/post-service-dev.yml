@@ -13,6 +13,7 @@ spring:
       maximum-pool-size: 5
       idle-timeout: 10000
       max-lifetime: 50000
+      connection-test-query: SELECT 1
   jpa:
     hibernate:
       ddl-auto: none
@@ -20,6 +21,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        jdbc:
+          time_zone: UTC
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
   output:
@@ -34,6 +37,7 @@ eureka:
       default-zone: http://service-registry-in-eureka:8761/eureka/  # Changed from defaultZone
     healthcheck:
       enabled: true
+    registry-fetch-interval-seconds: 5
   instance:
     prefer-ip-address: false   # Changed from preferIpAddress
     hostname: ${EUREKA_INSTANCE_HOSTNAME:post-service}
