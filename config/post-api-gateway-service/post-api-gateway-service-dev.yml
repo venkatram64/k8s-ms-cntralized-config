@@ -14,7 +14,7 @@ eureka: #client is registering into Eureka server
 spring:
   config:
     activate:
-      on-profiles: dev
+      on-profile: dev
     import: "configserver:http://post-config-server:8088"
   cloud:
     gateway:
