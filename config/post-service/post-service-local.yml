@@ -1,5 +1,7 @@
 
 spring:
+  application:
+    name: post-service
   profiles: dev
 #  config:
 #    activate:

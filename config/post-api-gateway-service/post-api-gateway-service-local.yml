@@ -10,6 +10,8 @@ eureka: #client is registering into Eureka server
     instanceId: ${spring.application.name}:${server.port}
 
 spring:
+  application:
+    name: post-api-gateway-service
   profiles:
     active: local
 #  config:
