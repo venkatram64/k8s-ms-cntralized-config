@@ -19,10 +19,6 @@ spring:
 #      on-profile: dev
 #    import: "configserver:http://post-config-server:8088"
   cloud:
-    config:
-      server:
-        native:
-          enable: false
     gateway:
       httpclient:
         connect-timeout: 1000
