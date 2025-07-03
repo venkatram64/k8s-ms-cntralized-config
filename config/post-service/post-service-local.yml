@@ -2,7 +2,8 @@
 spring:
   application:
     name: post-service
-  profiles: dev
+  profiles:
+    active: local
 #  config:
 #    activate:
 #      on-profile: local
