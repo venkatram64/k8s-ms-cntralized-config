@@ -2,8 +2,9 @@
 spring:
   application:
       name: content-service
-  profiles:
-    active: local
+  config:
+    activate:
+      on-profiles: local
 
 #  config:
 #    activate:

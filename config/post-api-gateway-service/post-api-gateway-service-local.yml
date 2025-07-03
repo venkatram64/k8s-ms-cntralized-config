@@ -12,8 +12,9 @@ eureka: #client is registering into Eureka server
 spring:
   application:
     name: post-api-gateway-service
-  profiles:
-    active: local
+  config:
+    activate:
+      on-profiles: local
 #  config:
 #    activate:
 #      on-profiles: dev
