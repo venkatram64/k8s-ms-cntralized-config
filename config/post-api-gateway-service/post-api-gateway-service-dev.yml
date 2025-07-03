@@ -12,13 +12,17 @@ eureka: #client is registering into Eureka server
     instanceId: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
 
 spring:
-  profiles:
-    active: dev
+  profiles: dev
+
 #  config:
 #    activate:
 #      on-profile: dev
 #    import: "configserver:http://post-config-server:8088"
   cloud:
+    config:
+      server:
+        native:
+          enable: false
     gateway:
       httpclient:
         connect-timeout: 1000
