@@ -12,10 +12,12 @@ eureka: #client is registering into Eureka server
     instanceId: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
 
 spring:
-  config:
-    activate:
-      on-profile: dev
-    import: "configserver:http://post-config-server:8088"
+  profiles:
+    active: dev
+#  config:
+#    activate:
+#      on-profile: dev
+#    import: "configserver:http://post-config-server:8088"
   cloud:
     gateway:
       httpclient:

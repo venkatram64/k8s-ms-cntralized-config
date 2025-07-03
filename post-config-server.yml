@@ -10,7 +10,10 @@ spring:  #config server configuration
         git:
           uri: https://github.com/venkatram64/k8s-ms-cntralized-config.git
           search-paths:   # Correct for your directory structure
-            - config/{application}         # Will resolve to config/post-service for post-service
+            - config/content-service
+            - config/post-service
+            - config/post-api-gateway-service
+            - config/service-registry-in-eureka
             - config                       # Fallback to config directory
             - .                           # Repository root (for application.yml)
           clone-on-start: true   # Ensures config is pulled on startup
