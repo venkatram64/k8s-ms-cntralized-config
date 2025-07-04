@@ -55,7 +55,7 @@ eureka:
     lease-expiration-duration-in-seconds: 30
 
 jwtSecret: b6c3e9153b2ae05e5b20444bbf014ab0dba5cfac666117d767dbd284b825ed85
-expirationMs: 36000000  # 10 hours
+expirationInMs: 36000000  # 10 hours
 
 # Add logging configuration
 logging:
