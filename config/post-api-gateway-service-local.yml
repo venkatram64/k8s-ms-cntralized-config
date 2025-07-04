@@ -1,0 +1,58 @@
+
+eureka: #client is registering into Eureka server
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+    fetchRegistry: true   # Add this to fetch service registry
+    registerWithEureka: true   # Add this to register with eureka
+  instance:
+    hostname: ${spring.application.name}
+    instanceId: ${spring.application.name}:${server.port}
+
+spring:
+  application:
+    name: post-api-gateway-service
+  config:
+    activate:
+      on-profiles: local
+#  config:
+#    activate:
+#      on-profiles: dev
+#    import: "configserver:http://localhost:8088"
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 1000
+        response-timeout: 5s
+        pool:
+          max-idle-time: 30000
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      globalcors:  #cors(cross origin resource sharing) configuration
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "GET,POST,PUT,DELETE,OPTIONS"
+            allowedHeaders: "*"
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin
+      routes:
+        - id: post-service #micro service application name
+          uri: lb://post-service          #micro service application name
+          predicates:
+            - Path=/api/posts/**
+        - id: content-service #micro service application name
+          uri: lb://content-service          #micro service application name
+          predicates:
+            - Path=/api/auth/**, /api/content/**, /api/users/**
+  reactor:
+    netty:
+      resources:
+        dns:
+          query-timeout: 500
+          max-queries-per-resolve: 1
+  output:
+    ansi:
+      enabled: always

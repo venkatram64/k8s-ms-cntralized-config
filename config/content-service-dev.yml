@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: content-service
+  config:
+    activate:
+      on-profile: dev
+#  config:
+#    activate:
+#      on-profile: dev
+#    import: "configserver:http://post-config-server:8088"
+  zipkin:
+    base-url: http://zipkin-server:9411
+    enabled: true
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:content-mysql}:3306/content_db?useSSL=false&allowPublicKeyRetrieval=true
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 15000
+      minimum-idle: 2
+      maximum-pool-size: 5
+      idle-timeout: 10000
+      max-lifetime: 50000
+      connection-test-query: SELECT 1
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  output:
+    ansi:
+      enabled: always
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://service-registry-in-eureka:8761/eureka/
+    healthcheck:
+      enabled: true
+    registry-fetch-interval-seconds: 5
+  instance:
+    prefer-ip-address: false
+    hostname: ${EUREKA_INSTANCE_HOSTNAME:content-service}
+    instance-id: ${eureka.instance.hostname}:${spring.application.name}:${server.port}
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 30
+
+jwtSecret: b6c3e9153b2ae05e5b20444bbf014ab0dba5cfac666117d767dbd284b825ed85
+expirationMs: 36000000  # 10 hours
+
+# Add logging configuration
+logging:
+  level:
+    com.venkat: DEBUG
+    org.springframework.cloud.config: DEBUG

@@ -1,0 +1,18 @@
+server:
+  port: 8060
+
+spring:
+  application:
+    name: post-api-gateway-service
+
+management: #actuator configuration
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+  tracing:  #for zipkin logging
+    sampling:
+      probability: 1.0

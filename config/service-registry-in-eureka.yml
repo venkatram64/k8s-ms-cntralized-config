@@ -1,0 +1,11 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: service-registry-in-eureka
+#  profiles:
+#    active: ${SPRING_PROFILES_ACTIVE:local}
+  output:
+    ansi:
+      enabled: always

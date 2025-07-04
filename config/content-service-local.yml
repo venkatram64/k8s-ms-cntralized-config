@@ -1,0 +1,52 @@
+
+spring:
+  application:
+      name: content-service
+  config:
+    activate:
+      on-profiles: local
+
+#  config:
+#    activate:
+#      on-profile: local
+#    import: "optional:configserver:http://localhost:8088"
+  zipkin:
+    base-url: http://zipkin-server:9411
+    enabled: true
+  datasource:
+    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_posts_new
+    username: ${MYSQL_USER:root}
+    password: ${MYSQL_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:  #database connection pool configuration
+      connection-timeout: 15000
+      minimum-idle: 2
+      maximum-pool-size: 5
+      idle-timeout: 10000
+      max-lifetime: 50000
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  output:
+    ansi:
+      enabled: always
+
+eureka: #client is registering into Eureka server
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: ${spring.application.name}
+    instanceId: ${spring.application.name}:${server.port}
+
+#secret for creating JWT token, JWT token will live upto 10 hours
+jwtSecret: b6c3e9153b2ae05e5b20444bbf014ab0dba5cfac666117d767dbd284b825ed85
+expirationInMs: 36000000  # 10(hours) * 60(minutes) * 60(seconds) * 1000(milli seconds) = 36000000

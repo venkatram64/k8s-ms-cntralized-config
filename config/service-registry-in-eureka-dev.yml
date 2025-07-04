@@ -1,0 +1,50 @@
+spring:
+  config:
+    activate:
+      on-profiles: dev
+  application:
+    name: service-registry-in-eureka
+
+server:
+  port: 8761  # Standard Eureka port
+
+eureka:
+  instance:
+    hostname: service-registry-in-eureka  # Use localhost for local development, service name for K8s
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: false  # Use hostname instead of IP
+  client:
+    register-with-eureka: false  # Eureka server doesn't register with itself
+    fetch-registry: false       # Eureka server doesn't fetch registry from itself
+    service-url:  # Fixed: serviceUrl -> service-url (kebab-case)
+      defaultZone: http://service-registry-in-eureka:8761/eureka/  # Fixed: self-reference issue
+    # Registry fetch and heartbeat intervals
+    registry-fetch-interval-seconds: 30
+    heartbeat-executor-thread-pool-size: 2
+    cache-refresh-executor-thread-pool-size: 2
+  server:
+    enable-self-preservation: false  # Disable for development
+    eviction-interval-timer-in-ms: 15000
+    renewal-percent-threshold: 0.85
+    # Fixed: wait-time-in-ms-when-sync-empty is not a valid property
+    max-threads-for-status-replication: 1
+    max-threads-for-peer-replication: 20
+    # Peer awareness settings (for cluster mode)
+    peer-eureka-nodes-update-interval-ms: 600000
+    peer-eureka-status-refresh-time-interval-ms: 30000
+
+# Management endpoints for monitoring
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,env
+  endpoint:
+    health:
+      show-details: always
+
+# Logging configuration
+logging:
+  level:
+    com.netflix.eureka: DEBUG
+    com.netflix.discovery: DEBUG
