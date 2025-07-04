@@ -1,0 +1,17 @@
+
+server:
+  port: ${POST_SERVICE_SERVER_PORT:8081}
+spring:
+  application:
+    name: post-service
+management:  #actuator configuration
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+  tracing:  #for zipkin logging
+    sampling:
+      probability: 1.0
