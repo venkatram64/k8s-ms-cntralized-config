@@ -12,7 +12,7 @@ spring:
     base-url: http://zipkin-server:9411
     enabled: true
   datasource:
-    url: jdbc:mysql://${MYSQL_HOST:post-mysql}:3306/db_posts_new
+    url: jdbc:mysql://${MYSQL_HOST:posts-mysql}:3306/posts_db
     username: ${MYSQL_USER:root}
     password: ${MYSQL_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
