@@ -42,7 +42,7 @@ spring:
         - DedupeResponseHeader=Access-Control-Allow-Origin
       routes:
         - id: react-frontend  #added reactjs as a route
-          uri: http://my-react-post-app-service:80
+          uri: http://my-react-post-app-service
           predicates:
             - Path=/**
         - id: post-service #micro service application name
